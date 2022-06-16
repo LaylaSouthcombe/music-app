@@ -1,0 +1,5 @@
+export { default as Home } from "./Home"
+export { default as PostMalone } from "./PostMalone"
+export { default as GlassAnimals } from "./GlassAnimals"
+export { default as Curate } from "./Curate"
+export { default as NotFound } from "./NotFound"
