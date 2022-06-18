@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Listens} from '../../components'
+import {Listens, FaveButton} from '../../components'
 
 const Songs = ({ songs }) => {
     return (
@@ -10,6 +10,7 @@ const Songs = ({ songs }) => {
                         <div className="songInfo" key="i">
                             <h2>{song.title}</h2>
                             <p>Released: {song.releaseDate}</p>
+                            <FaveButton />
                         </div>
                         <div className="spotifyEmbed">
                             <iframe src={song.spotify} width="100%" height="80" frameBorder="0"></iframe>
