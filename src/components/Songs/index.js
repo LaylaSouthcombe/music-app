@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
+import {Listens} from '../../components'
 
 const Songs = ({ songs }) => {
-    const [listens, setListens] = useState(0)
-    const increaseListens = () => {setListens(listens => listens + 1)}
     return (
         <>
             { 
@@ -14,8 +13,7 @@ const Songs = ({ songs }) => {
                         </div>
                         <div className="spotifyEmbed">
                             <iframe src={song.spotify} width="100%" height="80" frameBorder="0"></iframe>
-                            <p>Listens: {listens}</p>
-                            <button onClick={increaseListens}>Up</button>
+                            <Listens />
                         </div>
                         <div className="songImg">
                             <img src={song.img} alt={song.alt} />
