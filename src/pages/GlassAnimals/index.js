@@ -1,24 +1,20 @@
 import React, {useState} from 'react';
-// import { Songs, ArtistInfo } from './../../components'
 import { Songs, ArtistInfo } from './../../components'
-// import {default as ArtistInfo} from '../../components/ArtistInfo';
 
 const GlassAnimals = () => {
     const [songs, setSongs] = useState([
-        { title: "Cooped Up (with Roddy Ricch)", releaseDate: "12/05/2022", img: "https://www.sputnikmusic.com/images/albums/425934.jpg", spotify: "https://open.spotify.com/embed/track/32vE1nuG8T9c8bhmZdRY6d?theme=0", alt: "Twelve Carat Toothache cover art" },
-        { title: "Saint-Tropez", releaseDate: "06/09/2019", img: "https://bloximages.newyork1.vip.townnews.com/gonzagabulletin.com/content/tncms/assets/v3/editorial/a/6a/a6a8e4cc-d4fd-11e9-ac77-7f193561e953/5d79a1cf31fb4.image.jpg?resize=1200%2C1200", spotify: "https://open.spotify.com/embed/track/05mDaV9Vb3wrzjF6OPZnhq?theme=0", alt: "Hollywood's Bleeding cover art" },
-        { title: "Spoil My Night (feat. Swae Lee)", releaseDate: "27/04/2019", img: "https://upload.wikimedia.org/wikipedia/en/c/c1/Beerbongs_%26_Bentleys_by_Post_Malone.png", spotify: "https://open.spotify.com/embed/track/5VuxWXbt7XENQCtE9TzpTv?theme=0", alt: "beerbongs & bentleys cover art" }]
+        { title: "I Don't Wanna Talk (I Just Wanna Dance)", releaseDate: "2022", img: "https://dailyutahchronicle.com/wp-content/uploads/2021/09/IDWTIJWD-Single-Art.jpeg", spotify: "https://open.spotify.com/embed/track/7xvp7oLcLoVLnEVkOIe7Kt?utm_source=generator&theme=0", alt: "I Don't Wanna Talk (I Just Wanna Dance) cover art" },
+        { title: "It's All So Incredibly Loud", releaseDate: "2020", img: "https://upload.wikimedia.org/wikipedia/en/1/11/Dreamland_%28Glass_Animals%29.png", spotify: "https://open.spotify.com/embed/track/7jbDqjzkpjfUytnqG6zxO3?utm_source=generator&theme=0", alt: "Dreamland cover art" },
+        { title: "Take A Slice", releaseDate: "2016", img: "https://upload.wikimedia.org/wikipedia/en/2/2f/How_To_Be_A_Human_Being_cover_art.jpg", spotify: "https://open.spotify.com/embed/track/37adYGaYaAWTGhBaOzX4Fh?utm_source=generator&theme=0", alt: "How To Be A Human Being cover art" }]
     )
+
     
-        // const renderSongs = () => songs.map((song, i) => <Songs key={i} song={song}
-        //     />)
-
-
+    const [info, setInfo] = useState(
+        {name: "Glass Animals", genre: "Alternative/Indie", albums: 3}
+    )
     return (
         <>
-            <h1>Glass Animals</h1>
-            <ArtistInfo />
-            {/* {renderSongs()} */}
+            <ArtistInfo artist={info}/>
             <Songs songs={songs}/>
         </>
     )

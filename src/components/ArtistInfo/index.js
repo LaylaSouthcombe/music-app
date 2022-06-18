@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ArtistInfo = () => {
+const ArtistInfo = ({artist}) => {
     return (
     <div className="artistInfo">
-        <h2>Post Malone</h2>
-        <h3>Real name: Austin Richard Post</h3>
-        <h3>Born in:  Syracuse, New York, USA</h3>
+        <h1>{artist.name}</h1>
+        <h3>Genre: {artist.genre}</h3>
+        <h3>Albums: {artist.albums}</h3>
     </div>
     )
 }
