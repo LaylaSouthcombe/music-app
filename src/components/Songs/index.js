@@ -1,29 +1,56 @@
-import React, {useState}  from 'react';
+import React, {useState} from 'react';
 
-const Songs = ( {songs} ) => {
-    // const [song, setSong] = useState([]);
-    // const [song, setSong] = useState([
-    //     { title: "Cooped p (with Roddy Ricch)", releaseDate: "12/05/2022", img: "https://www.sputnikmusic.com/images/albums/425934.jpg", spotify: "https://open.spotify.com/embed/track/32vE1nuG8T9c8bhmZdRY6d?theme=0", alt: "Twelve Carat Toothache cover art" }])
-    // const renderSongs = () => {
-        return (
-        //     <div> {
-        // song.map(s => (
+
+const Songs = ({title, releaseDate, spotify, img, alt}) => {
+    const [listens, setListens] = useState(0)
+    const increaseListens = () => {setListens(listens => listens + 1)
+        
+    }
+    return(
         <div className="songDiv">
             <div className="songInfo">
-                <h2>{songs.title}</h2>
-                <p>Released: {songs.releaseDate}</p>
+                <h2>{title}</h2>
+                <p>Released: {releaseDate}</p>
             </div>
             <div className="spotifyEmbed">
-                <iframe src={songs.spotify} width="100%" height="80" frameBorder="0"></iframe>
+             <iframe src={spotify} width="100%" height="80" frameBorder="0"></iframe>
+             <p>Listens: {listens}</p>
+             <button onClick={increaseListens}>Up</button>
             </div>
             <div className="songImg">
-                <img src={songs.img} alt={songs.alt} />
+                <img src={img} alt={alt} />
             </div>
-        </div>  
-        // ))}
-        // </div>      
-        )
-    }
+        </div> 
+    )
+}
+
+
+
+// const Songs = ( ) => {
+//     const [songs, setSongs] = useState([]);
+//     // const [songs, setSongs] = useState([
+//     //     { title: "Cooped p (with Roddy Ricch)", releaseDate: "12/05/2022", img: "https://www.sputnikmusic.com/images/albums/425934.jpg", spotify: "https://open.spotify.com/embed/track/32vE1nuG8T9c8bhmZdRY6d?theme=0", alt: "Twelve Carat Toothache cover art" }])
+        
+//     // const renderSongs = () => {
+//         return (
+//         //     <div> {
+//         // song.map(s => (
+//         <div className="songDiv">
+//             <div className="songInfo">
+//                 <h2>{songs.title}</h2>
+//                 <p>Released: {songs.releaseDate}</p>
+//             </div>
+//             <div className="spotifyEmbed">
+//                 <iframe src={songs.spotify} width="100%" height="80" frameBorder="0"></iframe>
+//             </div>
+//             <div className="songImg">
+//                 <img src={songs.img} alt={songs.alt} />
+//             </div>
+//         </div>  
+//         // ))}
+//         // </div>      
+//         )
+//     }
 
     // return(
     //     <div>
