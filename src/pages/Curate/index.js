@@ -7,7 +7,7 @@ const data = qs.stringify({
   });
 
 function Curate () {
-    const [songs, setSongs] = useState([])
+    const [songs, setSongs] = useState([{ title: "I Don't Wanna Talk (I Just Wanna Dance)", releaseDate: "2022", img: "https://dailyutahchronicle.com/wp-content/uploads/2021/09/IDWTIJWD-Single-Art.jpeg", spotify: "7xvp7oLcLoVLnEVkOIe7Kt", alt: "I Don't Wanna Talk (I Just Wanna Dance) cover art" }])
     const [results, setResults] = useState([])
     const [token, setToken] = useState([])
     const [query, setQuery] = useState("")
@@ -113,6 +113,12 @@ console.log(results)
         setTrack('')
         setArtist('')
     }
+
+    const refreshSongs = (songs) => {
+        setSongs(songs)
+    }
+
+    console.log(songs)
       return (
           <>
             <h1>Curate your own song list</h1>
@@ -124,8 +130,13 @@ console.log(results)
                 <input type="text" id="artist" value={artist} onChange={onArtistInputChange}/>
                 <input type="submit"></input>
             </form>
-            <Results results={results}/>
-            <Songs songs={songs}/>
+            <Results results={results} songs={songs} setSongs={setSongs} refreshSongs={refreshSongs}/>
+            {songs.length !== 0 && 
+
+                <Songs songs={songs}/>
+
+            }
+            
           </>
         
 

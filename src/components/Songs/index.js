@@ -7,7 +7,7 @@ const Songs = ({ songs }) => {
             { 
                 songs.map((song, i) => (
                     <div className="songDiv">     
-                        <div className="songInfo" key="i">
+                        <div className="songInfo" key={i}>
                             <h2>{song.title}</h2>
                             <p>Released: {song.releaseDate}</p>
                             <FaveButton />
