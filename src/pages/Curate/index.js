@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SongForm } from '../../components'
+import { Songs, Results } from '../../components'
 import axios from 'axios';
 const qs = require('qs');
 const data = qs.stringify({
@@ -7,8 +7,14 @@ const data = qs.stringify({
   });
 
 function Curate () {
-
+    const [songs, setSongs] = useState([])
+    const [results, setResults] = useState([])
     const [token, setToken] = useState([])
+    const [query, setQuery] = useState("")
+    const [error, setError] = useState("")
+    const [track, setTrack] = useState("")
+    const [artist, setArtist] = useState("")
+
 
     useEffect(() => {
         const config = {
@@ -35,13 +41,98 @@ function Curate () {
         fetchToken()
         
     }, [])
+    // console.log('outside token', token)
 
-console.log('outside token', token)
-    
+
+    useEffect(() => {
+        
+        //   const fetchSong = async () => {
+        //     axios(config)
+        //         .then(function (response) {
+        //             // console.log(JSON.stringify(response.data));
+        //             console.log(response.data.tracks.items[0].id);
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        //   }
+
+        const fetchSong = async (query) => {
+            try {
+                const url =`https://api.spotify.com/v1/search?q=${query}&type=track&offset=0&limit=5`
+              const config = {
+                method: 'GET',
+                url: url,
+                headers: { 
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            };
+            const { data } = await axios(config)
+            console.log(data)
+                    // console.log(JSON.stringify(response.data));
+                    console.log(data.tracks.items[0].id);     
+            const items = data.tracks.items
+            const idArray = []
+            for(let i = 0; i < items.length; i++){
+                idArray.push(items[i].id)
+            }
+            setResults(idArray)            
+            }catch(err) {
+                setError(err)
+            }
+                                  
+        }
+        const timeoutId = setTimeout(() => {
+            fetchSong(query)
+          }, 400);
       
+        return () => {
+            clearTimeout(timeoutId)
+        }
+        // fetchSong()
+          
+    }, [ token, query ])
+
+console.log(results)
+
+    const onTrackInputChange = (e) => {
+        setTrack(e.target.value)
+    }
+    const onArtistInputChange = (e) => {
+        setArtist(e.target.value)
+    }
     
+    const onFormSubmit = (e) => {
+        e.preventDefault()
+        const trackStr = track.replace(" ", "%20")
+        const artistStr = artist.replace(" ", "%20")
+        const query = `track:${trackStr}+artist:${artistStr}`
+        console.log(query)
+        setQuery(query)
+        setTrack('')
+        setArtist('')
+    }
       return (
-        <SongForm token={token}/>
+          <>
+            <h1>Curate your own song list</h1>
+            //collapable form to open/hide form
+            <form onSubmit={onFormSubmit}>
+                <label htmlFor="track">Track name</label>
+                <input type="text" id="track" value={track} onChange={onTrackInputChange}/>
+                <label htmlFor="artist">Artist name</label>
+                <input type="text" id="artist" value={artist} onChange={onArtistInputChange}/>
+                <input type="submit"></input>
+            </form>
+            <Results results={results}/>
+            <Songs songs={songs}/>
+          </>
+        
+
+//want form in curate page
+
+//takes int id of onFormSubmit useEffect to populate
+//when click plus, adds a ssong to the song list that is fed into the songs component
 
 
 //brings back 5 results
@@ -52,16 +143,10 @@ console.log('outside token', token)
         
       );
     }
-    // return(
-    //     <h1>Curate your own song list</h1>
-
-    // )
-// }
 
 //form that adds a song component underneath
 //finds spotify id from spotify api
 
 
-// https://open.spotify.com/embed/track/${spotifyId}?utm_source=generator&theme=0
 
 export default Curate;
