@@ -7,7 +7,7 @@ import { AddButton } from '../../components'
 //have five result components
 
 
-const Results = ({ results, songs, setSongs, refreshSongs }) => {
+const Results = ({ results, songs, setSongs, refreshSongs, handleAddSong }) => {
     return (
         <div className="resultsDiv">
             { 
@@ -17,7 +17,7 @@ const Results = ({ results, songs, setSongs, refreshSongs }) => {
                         </div>
                         <div className="spotifyResultEmbed">
                             <iframe src={`https://open.spotify.com/embed/track/${result}?utm_source=generator&theme=0`} width="100%" height="80" frameBorder="0"></iframe>
-                            <AddButton songs={songs} result={result} setSongs={setSongs} refreshSongs={refreshSongs}/>
+                            <AddButton songs={songs} result={result} setSongs={setSongs} refreshSongs={refreshSongs} handleAddSong={handleAddSong}/>
                         </div>
                     </div>
                 ))
