@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SongForm } from '../../components'
 import axios from 'axios';
 const qs = require('qs');
 const data = qs.stringify({
@@ -37,54 +38,16 @@ function Curate () {
 
 console.log('outside token', token)
     
-      useEffect(() => {
-        const config = {
-            method: 'GET',
-            url: 'https://api.spotify.com/v1/search?q=track:youth+artist:glass%20animals&type=track',
-            headers: { 
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
-            }
-          };
-          const fetchSong = async () => {
-            axios(config)
-                .then(function (response) {
-                    // console.log(JSON.stringify(response.data));
-                    console.log(response.data.tracks.items[0].id);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-          }
-          fetchSong()
-          
-      }, [])
+      
     
       return (
-        
-            <button >
-d
-            </button>
+        <SongForm token={token}/>
 
 
+//brings back 5 results
+//add to list if correct
+                
 
-
-
-          /* <form onSubmit={buttonClicked}>        
-              <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
-              <Dropdown label="Playlist :" options={playlist.listOfPlaylistFromAPI} selectedValue={playlist.selectedPlaylist} changed={playlistChanged} />
-              <div className="col-sm-6 row form-group px-0">
-                <button type='submit' className="btn btn-success col-sm-12">
-                  Search
-                </button>
-              </div> */
-              /* <div className="row"> */
-
-                /* <Listbox items={tracks.listOfTracksFromAPI} clicked={listboxClicked} />
-                {trackDetail && <Detail {...trackDetail} /> } */
-              /* </div>         */
-          /* </form> */
-        // </div>
         
         
       );
